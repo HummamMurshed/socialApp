@@ -1,0 +1,47 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #f0ecff;
+}
+
+.container #posts #post .card .card-header .profile-image {
+  width: 40px;
+  height: 40px;
+}
+
+.card {
+  margin-top: 20px;
+}
+
+#btnaddpost{
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 5%;
+  right: 3%;
+  color: white;
+  /* font-weight: 1000; */
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 0;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0px 10px 10px rgba(0 0 0 0.3);
+
+
+  
+}
+
+.usernamcecontainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin-right: 5px;
+}

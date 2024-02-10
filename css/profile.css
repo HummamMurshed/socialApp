@@ -1,0 +1,41 @@
+
+.card-body .box-info{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px ,1fr));
+    column-gap: 10px;
+
+}
+.card-body .box-info .user-image > img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50% !important;
+    
+}
+.user-image{
+/* background-color: green; */
+
+}
+.post-comment-count,
+.user-info{
+    /* background-color: yellow; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.user-info p {
+    font-size: 20px;
+    font-weight: 500;
+
+}
+.post-comment-count{
+    /* background-color: red; */
+}
+.post-comment-count .number-info{
+    /* background-color: wheat; */
+    color: rgb(172, 172 ,172);
+    font-weight: 100;
+}
+.post-comment-count .number-info #numbers{
+    color: black;
+    font-size: 50px;
+}
