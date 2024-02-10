@@ -1,7 +1,7 @@
 
 .card-body .box-info{
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px ,1fr));
+    grid-template-columns: repeat(auto-fill, minmax(210px ,1fr));
     column-gap: 10px;
 
 }
@@ -15,7 +15,7 @@
 /* background-color: green; */
 
 }
-.post-comment-count,
+
 .user-info{
     /* background-color: yellow; */
     display: flex;
@@ -23,7 +23,7 @@
     justify-content: space-evenly;
 }
 .user-info p {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
 
 }
@@ -35,7 +35,7 @@
     color: rgb(172, 172 ,172);
     font-weight: 100;
 }
-.post-comment-count .number-info #numbers{
+.post-comment-count .number-info span{
     color: black;
     font-size: 50px;
 }
