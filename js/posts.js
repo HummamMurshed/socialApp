@@ -36,6 +36,7 @@ class clsPost {
     #printaltConsole(item){
         console.log(item);
     }
+
     #headers= {
         "Content-Type":"multipart/form-data",
         "authorization":"Bearer ",
@@ -98,7 +99,6 @@ class clsPost {
         this.#postParamAsForm.append("_method","put");
         axios.post(this.url, this.#postParamAsForm, { headers:this.#headers})
         .then((response) =>{
-
             showSuccessAlertUsingBootstrap("Update Successfully","success") ;
             setTimeout(()=>{
 
@@ -113,18 +113,10 @@ class clsPost {
     }
 
     delete(){
-        
-       
-        
-      
 
-      
         axios.delete(this.url,{headers:this.#headers})
         .then((response) =>{
-            console.log(response);
-            
             showSuccessAlertUsingBootstrap("The Post hase been deleted Successfully","success") ;
-      
             setTimeout(()=>{
               setupUI();
               this.#refrsh();
@@ -136,6 +128,8 @@ class clsPost {
         });
       
       }
+
+
 }
 
 
