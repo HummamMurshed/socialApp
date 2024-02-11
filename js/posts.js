@@ -8,7 +8,7 @@ const slashPost='/posts';
 
 class clsPost {
     #refrsh(){
-        window.location = "home.html";
+        window.location = "index.html";
     }
     #setMode(){
         let postid =  document.getElementById("postid-input").value;

@@ -94,5 +94,5 @@ function deletePost(comingPost){
  }
  
  function homeCilck(){
-  window.location="home.html";
+  window.location="index.html";
  }

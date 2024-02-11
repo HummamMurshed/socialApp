@@ -189,7 +189,7 @@ function setupUI(){
 
 function refrshPage(){
   setTimeout(() =>{
-    window.location = 'home.html';
+    window.location = 'index.html';
   },500)
 }
 
@@ -202,7 +202,7 @@ setupUI();
    
    localStorage.removeItem('token');
    localStorage.removeItem('Socialcurrentuser');
-   window.location = 'home.html';
+   window.location = 'index.html';
   //  setupUI();
    showSuccessAlertUsingBootstrap('Logout Seccessfully');
   //  setupUI();
