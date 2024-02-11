@@ -26,20 +26,6 @@ window.onscroll= function()   {
 
 
 
-function editCurrentPost(comingPost){
-  let post = JSON.parse(decodeURIComponent(comingPost));
-
-  getAnyElementById("intitle").value = post.title;
-  getAnyElementById("txtbodypost").value = post.body;
-  getAnyElementById("post-model-title").innerHTML = "Edit Post";
-  getAnyElementById("postid-input").value = "edit";
-
-  getAnyElementById("editid-input").value = post.id;
-  let addPostModel = getAnyElementById("addpost-model");
-  let postModel = new bootstrap.Modal(addPostModel, {});
-  getAnyElementById("btncreatepost").innerHTML="Update";
-  postModel.toggle();
-}
 
 
 
@@ -66,26 +52,29 @@ function fillDataToPostElement(post) {
 
   <div class="card shadow"  style="cursor:pointer;">
     <div class="card-header" >
+    <span style="cursor:pointr;" onclick="userNameClick(${post.author.id})">
       <img
-        src="${
-          post.author.profile_image != " "
-            ? post.author.profile_image
-            : "image/placeholders/تنزيل.png"
-        }"
-        class="profile-image rounded-circle border border-2"
-        alt=""
-      />
-      <b>@${post.author.username}</b>
+      src="${
+        post.author.profile_image != " "
+          ? post.author.profile_image
+          : "image/placeholders/تنزيل.png"
+      }"
+      class="profile-image rounded-circle border border-2"
+      alt=""
+    />
+    <b>@${post.author.username}</b>
+    
+    ${isOnwrPost(post.author.id) 
+      ?
+      getButton(post,"Delete","btn-danger","deletePost")
       
-      ${isOnwrPost(post.author.id) 
-        ?
-        getButton(post,"Delete","btn-danger","deletePost")
-        
-          : ""}
-      ${isOnwrPost(post.author.id) 
-        ?
-        getButton(post,"Edit","btn-secondary","editCurrentPost")
-          : ""}
+        : ""}
+    ${isOnwrPost(post.author.id) 
+      ?
+      getButton(post,"Edit","btn-secondary","editCurrentPost")
+        : ""}
+    </span>
+
     </div>
     <div class="card-body">
       <img
@@ -140,16 +129,7 @@ function areYouShure(message){
   return window.confirm(message);
 }
 
-function deletePost(comingPost){
-  getAnyElementById("postid-input").value = "delete";
-  let post = JSON.parse(decodeURIComponent(comingPost));
-  // if(areYouShure(""));
-  getAnyElementById("delete-post-id-input").value = post.id;
-  getAnyElementById("delete-post-body").innerHTML =post.body;
-  let deletPostModel = getAnyElementById("deletePost-model")
-  let postModel = new bootstrap.Modal(deletPostModel, {});
-  postModel.toggle();
-}
+
 
 
 function getAllPosts(pageNumber = currentPage, firstTime=true) {
@@ -173,5 +153,9 @@ function showpostsInPage(posts, firstTime) {
   for (post of posts) {
     postsContainer.innerHTML += fillDataToPostElement(post);
   }
+}
+
+function userNameClick(userId){
+  window.location = `profile.html?userId=${userId}`;
 }
 getAllPosts(currentPage);

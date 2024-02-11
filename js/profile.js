@@ -3,7 +3,7 @@
 
 
 const slashUsres ="/users";
-const id = 8001;
+
 class clsProfile{
     //Private functions
     #showUserInfoInPage(){
@@ -103,9 +103,15 @@ class clsProfile{
     #setName(){
         document.getElementById("h1name").innerHTML = `${this.user.name}'s Posts`  ;
     }
-
+    #getUserIDFromURLParam(){
+        const urlParam = new URLSearchParams(window.location.search);
+        const id = urlParam.get("userId");
+        return id;
+    }
     constructor(){
-        this.ID = id;
+        
+        this.ID = this.#getUserIDFromURLParam();
+
         this.url = `${baseUerl}${slashUsres}/${this.ID}`;
         this.userPostContainer = document.getElementById('user-posts-container');
         this.userPostContainer.innerHTML = "";

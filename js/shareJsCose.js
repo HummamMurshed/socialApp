@@ -51,3 +51,37 @@ function fillTags(comingTags){
   
        })
   }
+  function editCurrentPost(comingPost){
+    let post = JSON.parse(decodeURIComponent(comingPost));
+  
+    getAnyElementById("intitle").value = post.title;
+    getAnyElementById("txtbodypost").value = post.body;
+    getAnyElementById("post-model-title").innerHTML = "Edit Post";
+    getAnyElementById("postid-input").value = "edit";
+  
+    getAnyElementById("editid-input").value = post.id;
+    let addPostModel = getAnyElementById("addpost-model");
+    let postModel = new bootstrap.Modal(addPostModel, {});
+    getAnyElementById("btncreatepost").innerHTML="Update";
+    postModel.toggle();
+  }
+  function createNewPost(){
+
+    // let urlPost = getUrlMode();
+    let newPost = new clsPost();
+    newPost.sendRequestApi()
+    newPost.printPostItem();
+}
+function deletePost(comingPost){
+    getAnyElementById("postid-input").value = "delete";
+    let post = JSON.parse(decodeURIComponent(comingPost));
+    // if(areYouShure(""));
+    getAnyElementById("delete-post-id-input").value = post.id;
+    getAnyElementById("delete-post-body").innerHTML =post.body;
+    let deletPostModel = getAnyElementById("deletePost-model")
+    let postModel = new bootstrap.Modal(deletPostModel, {});
+    postModel.toggle();
+  }
+ function  profileClick(){
+    window.location = `profile.html?userId=${getCUrrentUserDetailes().id}`;
+ }

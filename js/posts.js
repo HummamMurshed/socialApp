@@ -135,10 +135,3 @@ class clsPost {
 
 
 //Functins
-function createNewPost(){
-
-    // let urlPost = getUrlMode();
-    let newPost = new clsPost();
-    newPost.sendRequestApi()
-    newPost.printPostItem();
-}
