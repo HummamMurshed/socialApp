@@ -71,9 +71,13 @@ class clsPost {
             
         }).catch((error) =>{
             showSuccessAlertUsingBootstrap(Error(error.message),"danger") ;
+        })
+        .finally(() =>{
+            toggelLoader(false);
         });
     }
     sendRequestApi(){
+        toggelLoader(true);
         if(this.Mode =="add"){
             this.addPost();
 
@@ -109,6 +113,9 @@ class clsPost {
         }).catch((error) =>{
             showSuccessAlertUsingBootstrap(Error(error.message),"danger") ;
 
+        })
+        .finally(() =>{
+            toggelLoader(false);
         });
     }
 
@@ -125,6 +132,9 @@ class clsPost {
         }).catch((error) =>{
             showSuccessAlertUsingBootstrap(Error(error.message),"danger") ;
       
+        })
+        .finally(() =>{
+            toggelLoader(false);
         });
       
       }

@@ -118,6 +118,8 @@ class clsProfile{
     }
 
     sendAPIRequest(){
+        toggelLoader(true);
+
         axios.get(this.url)
         .then((response) =>{
             console.log(response.data.data);
@@ -131,6 +133,10 @@ class clsProfile{
             console.log(Erorr(error.message));
 
         })
+        .finally(()=>{
+          toggelLoader(false);
+
+        });
     }
 
      getUserPost(){

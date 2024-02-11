@@ -5,7 +5,7 @@ let mode = 'noneLogin';
 
 //Events
 
-btnLogIn.addEventListener("click", login);
+// btnLogIn.addEventListener("click", login);
 
 const  baseUerl = "https://tarmeezacademy.com/api/v1";
 const loginModal = 'login-model';
@@ -26,18 +26,23 @@ class clsLogin {
   constructor(url, param) {
     this.url = url;
     this.param = param;
+ 
   
   }
 
   sendApiRequest(){
+    toggelLoader(true);
     axios.post(this.url,this.param)
     .then((respons) => {
 
       this.token = respons.data.token;
       this.user= respons.data.user;
-  
+      toggelLoader(false);
+      
     }).catch((error) =>{
       this.token ="error";
+      toggelLoader(false);
+
       this.erro = error.message;
     });
   }
@@ -129,7 +134,7 @@ return document.getElementById(element);
 
 
 
-setupUI();
+
 function getTokenFromLocalStorage(){
     return localStorage.getItem('token');
 }
@@ -189,12 +194,19 @@ function refrshPage(){
 }
 
 
+
+setupUI();
+
+
  function logout(){
-    localStorage.removeItem('token');
-    localStorage.removeItem('Socialcurrentuser');
-    setupUI();
-    refrshPage();
-    showSuccessAlertUsingBootstrap('Logout Seccessfully');
-    // setupUI();
+   
+   localStorage.removeItem('token');
+   localStorage.removeItem('Socialcurrentuser');
+   window.location = 'home.html';
+  //  setupUI();
+   showSuccessAlertUsingBootstrap('Logout Seccessfully');
+  //  setupUI();
+  //  setupUI();
+  // setupUI();
 
 }

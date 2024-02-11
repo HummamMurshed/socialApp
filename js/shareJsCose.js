@@ -27,17 +27,21 @@ function fillTags(comingTags){
     style="float: right; margin-left: 5px;" >${text} </button> `
   
   }
+
+  
+
   function createNewComment(postID){
   
     let txtComment = getAnyElementById('comment-input').value;
-    let myToken = getTokenFromLocalStorage();
+    let myToken = localStorage.getItem('token');
     let commentUrll = `${baseUerl}/posts/${postID}/comments`;
     let param = {
-      "body" : txtComment,
+      "body" : txtComment
     }
+    toggelLoader(true);
     axios.post(commentUrll,param,{
       headers:{
-                "Authorization":`Bearer ${myToken}`, 
+                "Authorization":`Bearer ${myToken}` 
               }
        })
        .then((response) => {
@@ -50,6 +54,9 @@ function fillTags(comingTags){
         showSuccessAlertUsingBootstrap(error.message,'danger');
   
        })
+       .finally(() =>{
+        toggelLoader(false);
+    });
   }
   function editCurrentPost(comingPost){
     let post = JSON.parse(decodeURIComponent(comingPost));
@@ -84,4 +91,8 @@ function deletePost(comingPost){
   }
  function  profileClick(){
     window.location = `profile.html?userId=${getCUrrentUserDetailes().id}`;
+ }
+ 
+ function homeCilck(){
+  window.location="home.html";
  }

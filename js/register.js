@@ -44,7 +44,7 @@ class clsRegister {
     
     }
     sendRequestApi(url){
-
+        toggelLoader(true);
         axios.post(url, this.#registerInfoAsForm,{headers: this.#headers})
         .then((response) =>{
             localStorage.setItem('token', response.data.token);
@@ -54,7 +54,10 @@ class clsRegister {
             setupUI();
             
         }).catch((error) =>{
-            showSuccessAlertUsingBootstrap(Error(error.message))  ;
+            showSuccessAlertUsingBootstrap(error.message,"danger")  ;
+        })
+        .finally(() =>{
+            toggelLoader(false);
         });
        
     }

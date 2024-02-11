@@ -29,6 +29,8 @@ class clsPostDetails {
     }
 
     sendAPIRequestToGetPost(){
+        toggelLoader(true);
+
         axios.get(this.urlGetPostRequest)
         .then((response) =>{
             this.post = response.data.data;
@@ -37,6 +39,9 @@ class clsPostDetails {
         .catch((error) =>{
             showSuccessAlertUsingBootstrap(error.message);
         })
+        .finally(() =>{
+          toggelLoader(false);
+      });
     }
     static getQueryParms(){
 

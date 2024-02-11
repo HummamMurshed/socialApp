@@ -12,24 +12,18 @@ let postsContainer = document.getElementById("post");
 
 //functions
 window.onscroll= function()   {
-  // const endOfPage = window.innerHeight + Math.ceil(window.pageYOffset) >=  document.body.offsetHeight;
-  //   if (endOfPage && currentPage < lastPage) {
-  //  getAllPosts(currentPage+=1,false);
+  const endOfPage = (window.innerHeight + Math.ceil(window.scrollY)) + 30  >=  document.body.scrollHeight;
+    if (endOfPage && currentPage < lastPage) {
+
+   getAllPosts(currentPage+=1,false);
+  }
+
+  // const endPage = window.innerHeight + document.documentElement.scrollTop >= document.body.scrollHeight;
+  //  console.log(window.innerHeight, window.scrollY, document.body.offsetHeight);
+  // if(endPage){
+  //   getAllPosts(currentPage+=1,false);
   // }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 function setCreatePostModal(){
@@ -63,6 +57,7 @@ function fillDataToPostElement(post) {
       alt=""
     />
     <b>@${post.author.username}</b>
+    </span>
     
     ${isOnwrPost(post.author.id) 
       ?
@@ -73,7 +68,7 @@ function fillDataToPostElement(post) {
       ?
       getButton(post,"Edit","btn-secondary","editCurrentPost")
         : ""}
-    </span>
+    
 
     </div>
     <div class="card-body">
@@ -135,9 +130,12 @@ function areYouShure(message){
 function getAllPosts(pageNumber = currentPage, firstTime=true) {
   // console.log(currentPage);
  // https://tarmeezacademy.com/api/v1/posts/1?limit=5&page=1
-  let urlPosts = `https://tarmeezacademy.com/api/v1/posts?limit=2&page=${pageNumber}`;
+  toggelLoader(true);
+
+  let urlPosts = `https://tarmeezacademy.com/api/v1/posts?limit=6&page=${pageNumber}`;
   axios.get(urlPosts).then((response) => {
     // lastPage = response.data.meta.last_page;
+    toggelLoader(false);
    
     showpostsInPage(response.data.data, firstTime);
   });
