@@ -8,11 +8,10 @@ setupUI();
 class clsPostDetails {
     #fillTags(postID){
         let tags ='';
-        for( tag in this.post.tags){
+        for(let tag in this.post.tags){
           tags +=  `<button class="btn btn-sm rounded-5" style="background-color: gray; color: white;">${tag.name}</button>`
       
         }
-        console.log(tags);
         return tags;
       }
     #fillPostDetails(){
@@ -47,7 +46,6 @@ class clsPostDetails {
     }
 
      showUserNameInPage(){
-       console.log(this.postElement);
         let eleName = document.getElementById('post');
         eleName.innerHTML = this.postElement;
         this.showAutorNameInPage();
@@ -135,6 +133,7 @@ class clsPostDetails {
         .then((response) =>{
           this.commentCount = response.data.data.comments_count;
           let comments = response.data.data.comments;
+          comments.reverse();
           let comment;      
         for( comment of comments){
           // console.log(coment.author);

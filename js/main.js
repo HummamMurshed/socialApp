@@ -20,43 +20,11 @@ window.onscroll= function()   {
 
 
 
-function fillTags(postID){
-  let tags ='';
-  for( tag in post.tags){
-    tags +=  `<button class="btn btn-sm rounded-5" style="background-color: gray; color: white;">${tag}</button>`
 
-  }
-  console.log(tags);
-}
 
-function postClick(postID){
-  window.location=`postdetails.html?postId=${postID}`;
-}
 
-function createNewComment(postID){
-  
-  let txtComment = getAnyElementById('comment-input').value;
-  let myToken = getTokenFromLocalStorage();
-  let commentUrll = `${baseUerl}/posts/${postID}/comments`;
-  let param = {
-    "body" : txtComment,
-  }
-  axios.post(commentUrll,param,{
-    headers:{
-              "Authorization":`Bearer ${myToken}`, 
-            }
-     })
-     .then((response) => {
-      showSuccessAlertUsingBootstrap("Your comment Added Successfilly(~.~)",'success');
-      closeSuccessAlert();
-      refrshPage();
 
-     })
-     .catch((error) =>{
-      showSuccessAlertUsingBootstrap(error.message,'danger');
 
-     })
-}
 
 function editCurrentPost(comingPost){
   let post = JSON.parse(decodeURIComponent(comingPost));
@@ -73,22 +41,9 @@ function editCurrentPost(comingPost){
   postModel.toggle();
 }
 
-function getCUrrentUserDetailes(){
-  return JSON.parse(localStorage.getItem("Socialcurrentuser"));
-}
 
-function isOnwrPost(authorid){
-  let currentUser = getCUrrentUserDetailes();
-  return currentUser != null && currentUser.id == authorid;
 
-}
 
-function getButton(post,text,type="btn-secondary",evntFunctionName="editCurrentPost"){
-  return `<button class="btn ${type}"
-  onclick="${evntFunctionName}('${encodeURIComponent(JSON.stringify(post))}')" 
-  style="float: right; margin-left: 5px;" >${text} </button> `
-
-}
 
 
 function setCreatePostModal(){
@@ -162,7 +117,7 @@ function fillDataToPostElement(post) {
         <span>(${post.comments_count}) Comments
           <span id="post-tags"> 
             <button class="btn btn-sm rounded-5" style="background-color: gray; color: white;">Policy</button>
-            ${fillTags(post)};
+            ${fillTags(post.tags)}
           </span>
         </span>
 
@@ -196,33 +151,7 @@ function deletePost(comingPost){
   postModel.toggle();
 }
 
-// function confirmPostDelete(){
-//   let postId = getAnyElementById("delete-post-id-input").value;
- 
-//   let deletUrlPost = `${baseUerl}/posts/${postId}`
 
-//   const headers ={
-//     "content-Type": "multipart/form-data",
-//     "authorization": `Bearer ${getTokenFromLocalStorage()}`
-//   }
-
-//   axios.delete(deletUrlPost,{headers:headers})
-//   .then((response) =>{
-//       console.log(response);
-      
-//       showSuccessAlertUsingBootstrap("The Post hase been deleted Successfully","success") ;
-
-//       setTimeout(()=>{
-//         setupUI();
-//         refrsh();
-//     },500)
-      
-//   }).catch((error) =>{
-//       showSuccessAlertUsingBootstrap(Error(error.message),"danger") ;
-
-//   });
-
-// }
 function getAllPosts(pageNumber = currentPage, firstTime=true) {
   // console.log(currentPage);
  // https://tarmeezacademy.com/api/v1/posts/1?limit=5&page=1
